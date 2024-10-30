@@ -1,6 +1,6 @@
 
 
-class Professor
+public class Professor
 {
     public Guid profId { get; }
     public string profName { get; set; }

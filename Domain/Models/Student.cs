@@ -1,6 +1,6 @@
 using StudentManagement.Domain.Models;
 
-class Student
+public class Student
 {
     public Guid studentId { get; }
     public string name { get; set; }

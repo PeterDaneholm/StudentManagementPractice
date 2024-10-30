@@ -1,6 +1,6 @@
 
 
-class Course
+public class Course
 {
     public Guid courseId { get; set; }
     public string courseName { get; set; }
