@@ -1,5 +1,11 @@
+using System.Runtime.InteropServices.JavaScript;
+using StudentManagement.Domain.Models;
 
-
+public class ExamAttempt
+{
+    public Grade grade;
+    public int attempt;
+}
 public class Course
 {
     public Guid courseId { get; set; }
@@ -9,4 +15,13 @@ public class Course
     public List<Student> waitList { get; set; }
     public DateOnly final { get; set; }
     public DateOnly midTerm { get; set; }
+    public int examAttempt { get; set; }
+    public List<ExamAttempt> examAttempts { get; set; }
+
+    public bool ExamAttempsNumber()
+    {
+        bool maxAttemptsUsed = this.examAttempt >= 3 ? true : false; 
+        
+        return maxAttemptsUsed;
+    }
 }
