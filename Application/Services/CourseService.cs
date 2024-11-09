@@ -4,7 +4,6 @@ using StudentManagement.Infrastructure.Repositories;
 
 public class CourseService
 {
-
     public bool IsOnWaitlist(string studentName, Course newCourse)
     {
         bool isEnrolled = false;
@@ -19,6 +18,18 @@ public class CourseService
         }
         return isEnrolled;
     }
+
+    public bool IsInClass(string studentName, Course actualCourse)
+    {
+        bool isEnrolled = false;
+        foreach (var student in actualCourse.attendingStudents)
+        {
+            if (student.name == studentName)
+                return isEnrolled = true;
+        }
+
+        return isEnrolled;
+    }
     
-    
+
 }

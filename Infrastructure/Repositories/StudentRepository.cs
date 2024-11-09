@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 public class StudentRepository: IRepository<Student>
 {
-    private IDatabase _database;
-    public StudentRepository(IDatabase database)
+    private Database _database;
+    public StudentRepository(Database database)
     {
         _database = database;
     }
@@ -16,7 +16,11 @@ public class StudentRepository: IRepository<Student>
         _database.OpenConnection();
         try
         {
-
+            using (var connection = _database.GetConnection())
+            {
+                var query = "INSERT INTO Student (studentId) VALUES (@entity.studentId)";
+                
+            }       
         }
         catch (Exception e)
         {
