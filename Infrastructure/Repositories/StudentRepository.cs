@@ -1,29 +1,46 @@
 namespace StudentManagement.Infrastructure.Repositories;
 using Domain.Models;
+using Utility;
+using System.Threading.Tasks;
 
 public class StudentRepository: IRepository<Student>
 {
-    public StudentRepository()
+    private IDatabase _database;
+    public StudentRepository(IDatabase database)
+    {
+        _database = database;
+    }
+
+    public async Task Add(Student entity)
+    {
+        _database.OpenConnection();
+        try
+        {
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            _database.CloseConnection();
+        }
+        
+    }
+
+    public async Task Get(Student student)
     {
         
     }
 
-    public void Add(Student entity)
+    public async Task GetAll()
     {
         
     }
 
-    public void Get(Student student)
-    {
-        
-    }
-
-    public void GetAll()
-    {
-        
-    }
-
-    public void Update(Student student, Dictionary<string, string> newInfo)
+    public async Task Update(Student student, Dictionary<string, string> newInfo)
     {
         
     }

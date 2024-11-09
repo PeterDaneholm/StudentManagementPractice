@@ -11,4 +11,7 @@ public class Student
     public Year year { get; set; }
     public List<Sport> sports { get; set; }
     public List<ExtraActivity> extraCorricularActivities { get; set; }
+    
+    
+    //Should not be able to join if grade average below threshold
 }

@@ -1,6 +1,10 @@
+using Npgsql;
+
 namespace StudentManagement.Utility;
 
-public class IDatabase
+public interface IDatabase
 {
-    
+    void OpenConnection();
+    void CloseConnection();
+    NpgsqlConnection GetConnection();
 }
