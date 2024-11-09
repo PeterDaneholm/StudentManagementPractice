@@ -1,4 +1,5 @@
 using StudentManagement.Domain.Models;
+using StudentManagement.Domain.Enums;
 
 public class Student
 {
@@ -7,4 +8,7 @@ public class Student
     public List<Course> currentClasses { get; set; }
     public List<Course> passedClasses { get; set; }
     public List<Grade> grades { get; set; }
+    public Year year { get; set; }
+    public List<Sport> sports { get; set; }
+    public List<ExtraActivity> extraCorricularActivities { get; set; }
 }
