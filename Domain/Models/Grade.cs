@@ -15,4 +15,5 @@ public enum GradeValue
     public Guid courseId { get; set; }
     public Guid studentId { get; set; }
     public GradeValue grade { get; set; }
+    public bool isPassed { get; set; }
 }

@@ -13,5 +13,5 @@ public class Student
     public List<ExtraActivity> extraCorricularActivities { get; set; }
     
     
-    //Should not be able to join if grade average below threshold
+    //Should not be able to join sport/activity if grade average below threshold
 }

@@ -4,32 +4,40 @@ using StudentManagement.Infrastructure.Repositories;
 
 public class CourseService
 {
-    public bool IsOnWaitlist(string studentName, Course newCourse)
+    public string EnrollStudent(Student student, Course course)
     {
-        bool isEnrolled = false;
+        bool canEnroll = false;
+        bool onWaitlist = false;
+        bool isInClass = course.IsInClass(student.name, course);
+        if (!isInClass)
+        {
+            onWaitlist = course.IsOnWaitlist(student.name, course);
+        }
+        if (!onWaitlist)
+        {
+            int currentStudents = course.attendingStudents.Count();
+            canEnroll = currentStudents >= course.maxAttendees ? true : false;
+        }
+
+        if (canEnroll)
+        {
+            course.attendingStudents.Add(student);
+            return "Student added";
+        }
+        else if (onWaitlist)
+        {
+            course.waitList.Add(student);
+            return "Course is full, added to waitlist";
+        }
+        else
+        {
+            return "Cannot enroll student";
+        }
+    }
+
+    public string IsCoursePassed(Student student, Course course)
+    {
         
-        foreach (var student in newCourse.waitList)
-        {
-            if (student.name == studentName)
-            {
-                isEnrolled = true;
-                break;
-            }
-        }
-        return isEnrolled;
+        return "Nah";
     }
-
-    public bool IsInClass(string studentName, Course actualCourse)
-    {
-        bool isEnrolled = false;
-        foreach (var student in actualCourse.attendingStudents)
-        {
-            if (student.name == studentName)
-                return isEnrolled = true;
-        }
-
-        return isEnrolled;
-    }
-    
-
 }

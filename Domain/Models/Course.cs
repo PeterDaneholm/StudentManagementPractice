@@ -5,8 +5,9 @@ using StudentManagement.Domain.Enums;
 public class ExamAttempt
 {
     public Grade grade;
-    public int attempt;
+    public int attempt = 0;
 }
+
 public class Course
 {
     public Guid courseId { get; set; }
@@ -21,10 +22,61 @@ public class Course
     public int examAttempt { get; set; }
     public List<ExamAttempt> examAttempts { get; set; }
 
+    public int CurrentAttempt()
+    {
+        return this.examAttempts.Count;
+    }
     public bool ExamAttempsNumber()
     {
-        bool maxAttemptsUsed = this.examAttempt >= 3 ? true : false; 
-        
+        bool maxAttemptsUsed = this.examAttempts.Count >= 3 ? true : false;
+
         return maxAttemptsUsed;
+    }
+
+    public bool IsOnWaitlist(string studentName, Course newCourse)
+    {
+        bool isEnrolled = false;
+
+        foreach (var student in newCourse.waitList)
+        {
+            if (student.name == studentName)
+            {
+                isEnrolled = true;
+                break;
+            }
+        }
+
+        return isEnrolled;
+    }
+
+    public bool IsInClass(string studentName, Course actualCourse)
+    {
+        bool isEnrolled = false;
+        foreach (var student in actualCourse.attendingStudents)
+        {
+            if (student.name == studentName)
+                return isEnrolled = true;
+        }
+
+        return isEnrolled;
+    }
+
+    public bool IsExamAttemptPassed(Grade grade, ExamAttempt exam)
+    {
+        if (grade.grade != Grade.GradeValue.f || grade.grade != Grade.GradeValue.e)
+        {
+            int currentAttempt = CurrentAttempt();
+            this.examAttempts.Add(new ExamAttempt
+                {
+                    attempt = currentAttempt + 1,
+                    grade = grade
+                }
+            );
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
