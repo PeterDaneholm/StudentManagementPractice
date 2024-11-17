@@ -3,8 +3,8 @@ namespace StudentManagement.Infrastructure.Repositories;
 
 public interface IRepository<T>
 {
-    public Task Add(T entity);
-    public Task Get(T entity);
-    public Task GetAll();
-    public Task Update(T entity, Dictionary<string, string> NewValue);
+    public Task<T> Add(T entity);
+    public Task<T> Get(T entity);
+    public Task<T> GetAll();
+    public Task<T> Update(T entity, Dictionary<string, string> NewValue);
 }

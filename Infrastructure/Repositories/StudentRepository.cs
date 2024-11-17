@@ -11,7 +11,7 @@ public class StudentRepository: IRepository<Student>
         _database = database;
     }
 
-    public async Task Add(Student entity)
+    public async Task<Student> Add(Student entity)
     {
         _database.OpenConnection();
         try
@@ -34,17 +34,17 @@ public class StudentRepository: IRepository<Student>
         
     }
 
-    public async Task Get(Student student)
+    public async Task<Student> Get(Student student)
     {
         
     }
 
-    public async Task GetAll()
+    public async Task<Student> GetAll()
     {
         
     }
 
-    public async Task Update(Student student, Dictionary<string, string> newInfo)
+    public async Task<Student> Update(Student student, Dictionary<string, string> newInfo)
     {
         
     }

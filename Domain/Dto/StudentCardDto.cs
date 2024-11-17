@@ -1,6 +1,6 @@
 namespace StudentManagement.Domain.Dto;
 
-public class StudentCard
+public class StudentCardDto
 {
     
 }

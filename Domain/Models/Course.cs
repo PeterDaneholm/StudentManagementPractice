@@ -12,6 +12,7 @@ public class Course
 {
     public Guid courseId { get; set; }
     public string courseName { get; set; }
+    public Professor professor { get; set; }
     public int maxAttendees { get; set; }
     public List<Student> attendingStudents { get; set; }
     public List<Student> waitList { get; set; }
