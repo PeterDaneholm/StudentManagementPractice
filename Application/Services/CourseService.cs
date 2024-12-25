@@ -8,11 +8,9 @@ public class CourseService
 {
     private CourseRepository _courseRepository;
 
-    public CourseService(
-        CourseRepository courseRepository
-    )
+    public CourseService()
     {
-        _courseRepository = courseRepository;
+        _courseRepository = new CourseRepository();
     }
 
     public string EnrollStudent(Student student, Course course)
@@ -54,11 +52,11 @@ public class CourseService
         return "Nah";
     }
 
-    public async Task<CourseInfoDto> GetCourseInfo(Course course)
+    public async Task<CourseInfoDto> GetCourseInfo(string course)
     {
         Course foundCourse = await _courseRepository.Get(course);
 
-        CourseInfoDto courseInfo = CourseInfoMapping.MapCourseInfo(course);
+        CourseInfoDto courseInfo = CourseInfoMapping.MapCourseInfo(foundCourse);
 
         return courseInfo;
     }

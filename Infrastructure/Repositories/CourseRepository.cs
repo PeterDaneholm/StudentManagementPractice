@@ -7,7 +7,7 @@ public class CourseRepository : IRepository<Course>
         throw new NotImplementedException();
     }
 
-    public async Task<Course> Get(Course entity)
+    public async Task<Course> Get(string name)
     {
         throw new NotImplementedException();
     }
