@@ -2,6 +2,7 @@ namespace StudentManagement.Application.Services;
 using StudentManagement.Domain.Models;
 using StudentManagement.Domain.Dto;
 using StudentManagement.Infrastructure.Repositories;
+using StudentManagement.Application.Mapping;
 
 public class CourseService
 {
@@ -57,7 +58,7 @@ public class CourseService
     {
         Course foundCourse = await _courseRepository.Get(course);
 
-        CourseInfoDto courseInfo = new CourseInfoDto();
+        CourseInfoDto courseInfo = CourseInfoMapping.MapCourseInfo(course);
 
         return courseInfo;
     }

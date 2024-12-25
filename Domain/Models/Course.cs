@@ -15,7 +15,7 @@ public class Course
     public Professor professor { get; set; }
     public int maxAttendees { get; set; }
     public List<Student> attendingStudents { get; set; }
-    public List<Student> waitList { get; set; }
+    public List<Student> waitList { get; set; } //check ordering of waitlist for which position in queue
     public DateOnly final { get; set; }
     public DateOnly midTerm { get; set; }
     public Semester semester { get; set; }
