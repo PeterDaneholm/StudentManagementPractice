@@ -1,5 +1,4 @@
 using StudentManagement.Domain.Dto;
-using StudentManagement.Domain.Dto;
 using StudentManagement.Infrastructure.Repositories;
 
 namespace StudentManagement.CLI;
