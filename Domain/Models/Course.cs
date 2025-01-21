@@ -10,17 +10,18 @@ public class ExamAttempt
 
 public class Course
 {
-    public Guid courseId { get; set; }
+    public Guid courseId { get; set; } = new Guid();
     public string courseName { get; set; }
     public Professor professor { get; set; }
-    public int maxAttendees { get; set; }
+    public int maxAttendees { get; set; } = 30;
     public List<Student> attendingStudents { get; set; }
     public List<Student> waitList { get; set; } //check ordering of waitlist for which position in queue
     public DateOnly final { get; set; }
     public DateOnly midTerm { get; set; }
     public Semester semester { get; set; }
     public Year year { get; set; }
-    public int examAttempt { get; set; }
+    //Unsure if the below ones actually should be here
+    public int examAttempt { get; set; } = 0;
     public List<ExamAttempt> examAttempts { get; set; }
 
     public int CurrentAttempt()

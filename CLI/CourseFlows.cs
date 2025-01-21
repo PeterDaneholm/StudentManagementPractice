@@ -1,5 +1,8 @@
+using StudentManagement.Domain.Models;
 using StudentManagement.Domain.Dto;
+using StudentManagement.Domain.Enums;
 using StudentManagement.Infrastructure.Repositories;
+using StudentManagement.Utility;
 
 namespace StudentManagement.CLI;
 using StudentManagement.Application.Services;
@@ -20,5 +23,34 @@ public class CourseFlows
         CourseInfoDto courseInfo = await _courseService.GetCourseInfo(courseName);
         
         Console.WriteLine($"Info: {courseInfo}");
+    }
+
+    public async void RegisterNewCourse()
+    {
+        Course newCourse = new Course();
+        //Alternative approach could be to implement the IEnumerable interface into the class, 
+        //so the Object can be iterated through with a foreach loop. 
+        Console.WriteLine("Start creating new course \n" +
+                          "Start by assigning a name");
+        newCourse.courseName = Console.ReadLine();
+        Console.WriteLine("Let's add which year and semester it'll be schedueled for. \n" +
+                          "Enter a valid response for year: \n" +
+                          "First \n" +
+                          "Second \n" +
+                          "Third");
+
+        Console.WriteLine("Enter the professor who will teach the course");
+        string professor = Console.ReadLine();
+        
+        Console.WriteLine("When should the final be?");
+        newCourse.final = DateOnly.Parse(Console.ReadLine());
+        
+        Console.WriteLine("Which year?");
+        string year = Console.ReadLine();
+        Enum.TryParse(year, out Year parsedYear);
+        newCourse.year = parsedYear;
+
+        Console.WriteLine("And what semester?");
+        string semester = Console.ReadLine();
     }
 }

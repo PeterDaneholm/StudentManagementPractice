@@ -10,7 +10,8 @@ public class CourseInfoMapping
         {
             profName = course.professor.profName,
             courseName = course.courseName,
-            enrolledStudents = course.attendingStudents.Select(c => c.name).ToList()
+            enrolledStudents = course.attendingStudents.Select(c => c.name).ToList(),
+            currentWaitlist = course.waitList.Select(s => s.name).ToList()
         };
         return newInfo;
     }
