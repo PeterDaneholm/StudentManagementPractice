@@ -31,21 +31,25 @@ public class StudentRepository: IRepository<Student>
         {
             _database.CloseConnection();
         }
-        
+
+        return entity;
     }
 
-    public async Task<Student> Get(Student student)
+    public async Task<Student> Get(string name)
     {
-        
+        Student foundStudent = new Student();
+        return foundStudent;
     }
 
     public async Task<Student> GetAll()
     {
-        
+        Student foundStudent = new Student();
+        return foundStudent;
     }
 
     public async Task<Student> Update(Student student, Dictionary<string, string> newInfo)
     {
-        
+        Student foundStudent = new Student();
+        return foundStudent;
     }
 }

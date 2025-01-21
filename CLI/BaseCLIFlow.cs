@@ -24,7 +24,7 @@ public class BaseCLIFlow
                 break;
             default:
                 Console.WriteLine("Not Valid input, try again:");
-                input = Console.ReadLine();
+                StartFlow();
                 break;
         };
     }

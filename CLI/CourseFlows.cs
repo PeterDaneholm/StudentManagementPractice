@@ -28,8 +28,7 @@ public class CourseFlows
     public async void RegisterNewCourse()
     {
         Course newCourse = new Course();
-        //Alternative approach could be to implement the IEnumerable interface into the class, 
-        //so the Object can be iterated through with a foreach loop. 
+        
         Console.WriteLine("Start creating new course \n" +
                           "Start by assigning a name");
         newCourse.courseName = Console.ReadLine();
@@ -41,6 +40,7 @@ public class CourseFlows
 
         Console.WriteLine("Enter the professor who will teach the course");
         string professor = Console.ReadLine();
+        //Need to query for professor and assign if found
         
         Console.WriteLine("When should the final be?");
         newCourse.final = DateOnly.Parse(Console.ReadLine());
@@ -52,5 +52,7 @@ public class CourseFlows
 
         Console.WriteLine("And what semester?");
         string semester = Console.ReadLine();
+        Enum.TryParse(semester, out Semester parsedSemester);
+        newCourse.semester = parsedSemester;
     }
 }
