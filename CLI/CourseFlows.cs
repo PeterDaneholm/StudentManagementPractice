@@ -46,14 +46,16 @@ public class CourseFlows
         string professor = Console.ReadLine();
         //Need to query for professor and assign if found
         
-        Console.WriteLine("When should the final be?");
+        Console.WriteLine("When should the final be?\n" +
+                          "Enter a date in the format: YYYY-MM-DD");
         newCourse.final = DateOnly.Parse(Console.ReadLine());
 
-        Console.WriteLine("And what semester?");
+        Console.WriteLine("And what semester? Can be either 'Spring' or 'Fall'");
         string semester = Console.ReadLine();
         Enum.TryParse(semester, out Semester parsedSemester);
         newCourse.semester = parsedSemester;
         
         Console.WriteLine(newCourse);
+        await _courseService.RegisterCourse(newCourse);
     }
 }

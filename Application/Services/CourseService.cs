@@ -13,6 +13,15 @@ public class CourseService
         _courseRepository = new CourseRepository();
     }
 
+    async public Task<string> RegisterCourse(Course newCourse)
+    {
+        //Might need a dto object as the parameter and map to the course object
+        string courseStatus = "";
+        await _courseRepository.Add(newCourse);
+
+        return courseStatus;
+    }
+
     public string EnrollStudent(Student student, Course course)
     {
         bool canEnroll = false;
