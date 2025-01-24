@@ -3,6 +3,7 @@ using System.Net.Mime;
 
 public class BaseCLIFlow
 {
+    private CourseFlows _courseFlows = new CourseFlows();
     public void StartFlow()
     {
         Console.WriteLine("Welcome to the Student Management Programme");
@@ -14,33 +15,16 @@ public class BaseCLIFlow
         switch (input)
         {
             case "1":
-                CreateUserFlow();
                 break;
             case "2":
-                CreateCourseFlow();
+                _courseFlows.RegisterNewCourse();
                 break;
             case "3":
-                ViewInfoFlow();
                 break;
             default:
                 Console.WriteLine("Not Valid input, try again:");
                 StartFlow();
                 break;
         };
-    }
-
-    public void CreateUserFlow()
-    {
-        
-    }
-
-    public void CreateCourseFlow()
-    {
-        
-    }
-
-    public void ViewInfoFlow()
-    {
-        
     }
 }

@@ -81,4 +81,19 @@ public class Course
             return false;
         }
     }
+
+    public override string ToString()
+    {
+        return "Course ID: " + courseId + "\n" +
+               "Course name: " + courseName + "\n" +
+               "Professor: " + professor + "\n" +
+               "Year: " + year + "\n" +
+               "Semester: " + semester + "\n" +
+               "Final: " + final + "\n" +
+               "Midterm: " + midTerm + "\n" +
+               "Max Attendees: " + maxAttendees + "\n" +
+               "Attending Students: " + attendingStudents + "\n" +
+               "Waitlist: " + waitList + "\n";
+
+    }
 }

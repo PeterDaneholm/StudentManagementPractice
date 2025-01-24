@@ -32,11 +32,15 @@ public class CourseFlows
         Console.WriteLine("Start creating new course \n" +
                           "Start by assigning a name");
         newCourse.courseName = Console.ReadLine();
+        
         Console.WriteLine("Let's add which year and semester it'll be schedueled for. \n" +
                           "Enter a valid response for year: \n" +
                           "First \n" +
                           "Second \n" +
                           "Third");
+        string year = Console.ReadLine();
+        Enum.TryParse(year, out Year parsedYear);
+        newCourse.year = parsedYear;
 
         Console.WriteLine("Enter the professor who will teach the course");
         string professor = Console.ReadLine();
@@ -44,15 +48,12 @@ public class CourseFlows
         
         Console.WriteLine("When should the final be?");
         newCourse.final = DateOnly.Parse(Console.ReadLine());
-        
-        Console.WriteLine("Which year?");
-        string year = Console.ReadLine();
-        Enum.TryParse(year, out Year parsedYear);
-        newCourse.year = parsedYear;
 
         Console.WriteLine("And what semester?");
         string semester = Console.ReadLine();
         Enum.TryParse(semester, out Semester parsedSemester);
         newCourse.semester = parsedSemester;
+        
+        Console.WriteLine(newCourse);
     }
 }
