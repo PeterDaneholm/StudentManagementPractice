@@ -41,10 +41,11 @@ public class StudentRepository: IRepository<Student>
         return foundStudent;
     }
 
-    public async Task<Student> GetAll()
+    public async Task<List<Student>> GetAll()
     {
-        Student foundStudent = new Student();
-        return foundStudent;
+        List<Student> students = new List<Student>();
+        
+        return students;
     }
 
     public async Task<Student> Update(Student student, Dictionary<string, string> newInfo)

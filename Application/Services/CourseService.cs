@@ -16,10 +16,16 @@ public class CourseService
     async public Task<string> RegisterCourse(Course newCourse)
     {
         //Might need a dto object as the parameter and map to the course object
-        string courseStatus = "";
-        await _courseRepository.Add(newCourse);
-
-        return courseStatus;
+        try
+        {
+            await _courseRepository.Add(newCourse);
+            return "Course added successfully";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public string EnrollStudent(Student student, Course course)
