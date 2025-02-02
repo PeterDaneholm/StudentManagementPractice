@@ -1,6 +1,8 @@
 namespace StudentManagement.CLI;
 using System.Net.Mime;
 
+//https://www.loginradius.com/blog/engineering/enum-csharp/
+
 public class BaseCLIFlow
 {
     private CourseFlows _courseFlows = new CourseFlows();

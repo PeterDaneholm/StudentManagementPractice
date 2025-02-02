@@ -48,7 +48,7 @@ public class StudentRepository: IRepository<Student>
         return students;
     }
 
-    public async Task<Student> Update(Student student, Dictionary<string, string> newInfo)
+    public async Task<Student> Update(Student student, Dictionary<string, object> newInfo)
     {
         Student foundStudent = new Student();
         return foundStudent;

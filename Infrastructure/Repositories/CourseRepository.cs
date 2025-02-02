@@ -12,12 +12,12 @@ public class CourseRepository : IRepository<Course>
         throw new NotImplementedException();
     }
 
-    public async Task<Course> GetAll()
+    public async Task<List<Course>> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public async Task<Course> Update(Course entity, Dictionary<string, string> NewValue)
+    public async Task<Course> Update(Course entity, Dictionary<string, object> NewValue)
     {
         throw new NotImplementedException();
     }

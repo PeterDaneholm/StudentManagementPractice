@@ -6,10 +6,12 @@ using StudentManagement.Domain.Dto;
 public class StudentService
 {
     private StudentRepository _studentRepository;
+    private CourseRepository _courseRepository;
 
-    public StudentService(StudentRepository studentRepository)
+    public StudentService(StudentRepository studentRepository, CourseRepository courseRepository)
     {
         _studentRepository = studentRepository;
+        _courseRepository = courseRepository;
     }
 
     public async Task<Student> GetStudent(string studentName)
@@ -39,5 +41,29 @@ public class StudentService
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task<string> EnrollStudent(string studentName, string courseName)
+    {
+        Course newCourse = await _courseRepository.Get(courseName);
+        Student student = await _studentRepository.Get(studentName);
+        var enrolledCourses = student.currentClasses.Append(newCourse).ToList();
+        var newInfo = new Dictionary<string, object>{ { "newCourses", enrolledCourses }};
+        try
+        {
+            await _courseRepository.Update(newCourse,  
+                new Dictionary<string, object>
+                {
+                    {"updatedStudents", newCourse.attendingStudents.Append(student)}
+                });
+            await _studentRepository.Update(student, newInfo);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+        return "Done";
     }
 }
