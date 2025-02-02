@@ -1,4 +1,5 @@
 namespace StudentManagement.Application.Services;
+
 using StudentManagement.Infrastructure.Repositories;
 using StudentManagement.Domain.Models;
 using StudentManagement.Domain.Dto;
@@ -47,23 +48,30 @@ public class StudentService
     {
         Course newCourse = await _courseRepository.Get(courseName);
         Student student = await _studentRepository.Get(studentName);
-        var enrolledCourses = student.currentClasses.Append(newCourse).ToList();
-        var newInfo = new Dictionary<string, object>{ { "newCourses", enrolledCourses }};
-        try
+        bool canEnroll = newCourse.IsInClass(studentName, newCourse);
+        if (canEnroll)
         {
-            await _courseRepository.Update(newCourse,  
-                new Dictionary<string, object>
-                {
-                    {"updatedStudents", newCourse.attendingStudents.Append(student)}
-                });
-            await _studentRepository.Update(student, newInfo);
+            var enrolledCourses = student.currentClasses.Append(newCourse).ToList();
+            var newInfo = new Dictionary<string, object> { { "newCourses", enrolledCourses } };
+            try
+            {
+                await _courseRepository.Update(newCourse,
+                    new Dictionary<string, object>
+                    {
+                        { "updatedStudents", newCourse.attendingStudents.Append(student) }
+                    });
+                await _studentRepository.Update(student, newInfo);
+                return $"Student {studentName} enrolled in course ${newCourse.courseName}";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-        catch (Exception e)
+        else
         {
-            Console.WriteLine(e);
-            throw;
+            return "Cannot enroll in course";
         }
-        
-        return "Done";
     }
 }
